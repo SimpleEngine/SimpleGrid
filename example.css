@@ -1,0 +1,118 @@
+/**
+ * CSS Styles to show example of how the CSS grid works.
+ *
+ * Copyright 2015
+ * Licensed under MIT
+ *
+ * Coupled together by Jonathan Whiting
+ * http://machiine.com
+ *
+ * CH01 - Resets & Bootstraps
+ * CH02 - Typography
+ * CH03 - Page Structure
+ * CH04 - Header & Navigation
+ * CH05 - Content & Media
+ * CH06 - Footer
+ * CH07 - Miscellaneous
+**/ 
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300,700);
+@import url("grid.min.css");
+
+/* CH01 - Resets & Bootstraps */
+/* ---------------------------------- */
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}
+
+
+/* CH02 - Typography */
+/* ---------------------------------- */
+body {
+	font-family: 'Quicksand', sans-serif;
+}
+h1,h2,h3,p,pre,table {
+	margin: 0.2em 0 1em;
+}
+h1 {
+	font-size: 2.5em;
+}
+h2 {
+	font-size: 2em;
+	margin-top: 40px;
+}
+h3 {
+	font-size: 1.4em;
+}
+p {
+	line-height: 1.3em;
+}
+.highlight {
+	color: #66cc66;
+}
+
+/* CH03 - Page Structure */
+/* ---------------------------------- */ 
+.container .row.example {
+	background: #fcfcfc;
+	margin: 0 0 0.5em 6em;
+}
+.example .unit {
+	float: left;
+	margin-left: -6em;
+	width: 6em;
+}
+.example [class*="span"] {
+	background: #efefef;
+	min-height: 20px;
+}
+.intro {
+	text-align: center;
+	margin: 40px 0 0;
+}
+.row.show-grid [class*="span"]{
+	border: 1px solid #efefef;
+	background: #fcfcfc;
+	overflow: hidden;
+}/*
+.row.show-grid .row [class*="span"]{
+	margin: -1px -1px -1px -1px;
+}
+*/
+/* CH04 - Header & Navigation */
+/* ---------------------------------- */ 
+
+/* CH05 - Content & Media **/
+/* ---------------------------------- */ 
+pre {
+	background: #fcfcfc;
+	border: 1px solid #efefef;
+	padding: 20px;
+	overflow: hidden;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+ul {
+	margin-bottom: 0.5em;
+}
+li {
+	list-style: disc;
+	margin-left: 20px;
+}
+img {
+	width: auto;
+	max-width: 100%;
+}
+table {
+	width: 100%;
+}
+hr {
+	border: none;
+	border-bottom: 1px solid #efefef;
+}
+
+/* CH06 - Footer
+ * CH07 - Miscellaneous
+**/
+
+html, body {
+	width: 100%;
+	height: 100%;
+}

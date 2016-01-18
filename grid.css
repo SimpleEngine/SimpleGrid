@@ -1,18 +1,21 @@
 /*
- * SimpleGrid v1.0
+ * SimpleGrid v1.1
  * css3 Mobile first Approach
  *
  * Copyright 2015
  * Licensed under MIT
  *
- * Super simple (and flexible) grid that does what it is designed to do and nothing more. 
- * Uses box sizing. ie8+, chrome, firefox, safari, opera
+ * Super simple (and flexible) grid that does what it is designed to do. 
+ * Uses box sizing. 
+ *
+ * Supports IE8+ and all modern web browsers.
+ * ie8+, chrome, firefox, safari, opera
  *
  * .container - set width of page
  * .row - creates row 
- * .row.rigid - extends row, maintains grid columns on small screens
- * .span - set the number of columns to span
- * .shift - set the number of columns to offset
+ * .row.static - extends row, maintains grid columns on small screens
+ * .span- - set the number of columns to span
+ * .shift- - set the number of columns to offset
  *
  * container, row - grid naming convention from twitter bootstrap
  * Thanks to OOCSS, Twitter Bootstrap, and many others for leading the way in grid layouts
@@ -20,7 +23,7 @@
  * 10px Gutter.
  *
  * To change the gutter update:
- * .container padding, .row margin, .span padding
+ * .container padding, .row margin, .span- padding
  *
  * Coupled together by Jonathan Whiting
  * http://machiine.com
@@ -34,22 +37,23 @@ body{
 	margin: 0 auto;
 	padding: 0 10px 0 10px;
 }
-.row {
+.row,
+[class*="span"] {
 	/** 
 	 * Set the element width by the border property, 
 	 * Allows a border to be added to this element. 
 	 **/
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	margin-left: -10px;
-	margin-right: -10px;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 	*zoom: 1;
 }
-.row.show-grid [class*="span"]{
-	border: 1px solid #ddd;
-	background: #eee;
-	overflow: hidden;
+.gutterless.row .row {
+	margin: 0px;
+}
+.container .row, .row .row, .gutterless.row .row .row{
+	margin-left: -10px;
+	margin-right: -10px;
 }
 .row:before,
 .row:after {
@@ -60,63 +64,59 @@ body{
 .row:after {
 	clear: both;
 }
-
-[class*="span"] {
+.gutterless [class*="span"]{
+	padding: 0;
+}
+[class*="span"],
+.gutterless [class*="span"] [class*="span"] {
 	/** 
 	 * Set the element width by the border property, 
 	 * Allows a border to be added to this element. 
 	 **/
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 	float: left;
 	min-height: 1px;
-	margin-left: 0px;
+	margin: 0;
 	padding: 0 10px 0 10px;
 }
 [class*="span"],
-.row:not(.rigid) > [class*="span"] {
+.row:not(.static) > [class*="span"] {
 	width: 100%;
-	margin: 0;
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
 }
 /* Set styles for direct row child */ 
-.row.rigid > .span12 {
+.row.static > .span-12 {
 	width: 100%;
 }
-.row.rigid > .span11 {
+.row.static > .span-11 {
 	width: 91.66666667%;
 }
-.row.rigid > .span10 {
+.row.static > .span-10 {
 	width: 83.33333333%;
 }
-.row.rigid > .span9 {
+.row.static > .span-9 {
 	width: 75%;
 }
-.row.rigid > .span8 {
+.row.static > .span-8 {
 	width: 66.66666667%;
 }
-.row.rigid > .span7 {
+.row.static > .span-7 {
 	width: 58.33333333%;
 }
-.row.rigid > .span6 {
+.row.static > .span-6 {
 	width: 50%;
 }
-.row.rigid > .span5 {
+.row.static > .span-5 {
 	width: 41.66666667%;
 }
-.row.rigid > .span4 {
+.row.static > .span-4 {
 	width: 33.33333333%;
 }
-.row.rigid > .span3 {
+.row.static > .span-3 {
 	width: 25%;
 }
-.row.rigid > .span2 {
+.row.static > .span-2 {
 	width: 16.66666667%;
 }
-.row.rigid > .span1 {
+.row.static > .span-1 {
 	width: 8.33333333%;
 }
 [class*="span"].shift-right {
@@ -125,139 +125,291 @@ body{
 [class*="span"].shift-left {
 	float: left;
 }
-/** Could also call .shift **/
-.row.rigid > .shift12 {
+/** Could also call .shift- **/
+.row.static > .shift-12 {
 	margin-left: 100%;
 }
-.row.rigid > .shift11 {
+.row.static > .shift-11 {
 	margin-left: 91.66666666666667%;
 }
-.row.rigid > .shift10 {
+.row.static > .shift-10 {
 	margin-left: 83.33333333333333%;
 }
-.row.rigid > .shift9 {
+.row.static > .shift-9 {
 	margin-left: 75%;
 }
-.row.rigid > .shift8 {
+.row.static > .shift-8 {
 	margin-left: 66.6666666666667%;
 }
-.row.rigid > .shift7 {
+.row.static > .shift-7 {
 	margin-left: 58.33333333333333%;
 }
-.row.rigid > .shift6 {
+.row.static > .shift-6 {
 	margin-left: 50%;
 }
-.row.rigid > .shift5 {
+.row.static > .shift-5 {
 	margin-left: 41.6666666666667%;
 }
-.row.rigid > .shift4 {
+.row.static > .shift-4 {
 	margin-left: 33.333333333333%;
 }
-.row.rigid > .shift3 {
+.row.static > .shift-3 {
 	margin-left: 25%;
 }
-.row.rigid > .shift2 {
+.row.static > .shift-2 {
 	margin-left: 16.6666666666666666%;
 }
-.row.rigid > .shift1 {
+.row.static > .shift-1 {
 	margin-left:  8.3333333333333%;
 }
-.row:not(.rigid) > .shift12,  
-.row:not(.rigid) > .shift11, 
-.row:not(.rigid) > .shift10, 
-.row:not(.rigid) > .shift9, 
-.row:not(.rigid) > .shift8, 
-.row:not(.rigid) > .shift7, 
-.row:not(.rigid) > .shift6,
-.row:not(.rigid) > .shift5, 
-.row:not(.rigid) > .shift4, 
-.row:not(.rigid) > .shift3, 
-.row:not(.rigid) > .shift2, 
-.row:not(.rigid) > .shift1 {
+.row:not(.static) > .shift-12,  
+.row:not(.static) > .shift-11, 
+.row:not(.static) > .shift-10, 
+.row:not(.static) > .shift-9, 
+.row:not(.static) > .shift-8, 
+.row:not(.static) > .shift-7, 
+.row:not(.static) > .shift-6,
+.row:not(.static) > .shift-5, 
+.row:not(.static) > .shift-4, 
+.row:not(.static) > .shift-3, 
+.row:not(.static) > .shift-2, 
+.row:not(.static) > .shift-1 {
 	margin-left: 0px;
 }
+.span-12-sm {
+	width: 100% !important; 
+}
+.span-11-sm {
+	width: 91.66666667% !important;
+}
+.span-10-sm {
+	width: 83.33333333% !important;
+}
+.span-9-sm {
+	width: 75% !important;
+}
+.span-8-sm {
+	width: 66.66666667% !important;
+}
+.span-7-sm {
+	width: 58.33333333% !important;
+}
+.span-6-sm {
+	width: 50% !important;
+}
+.span-5-sm {
+	width: 41.66666667% !important;
+}
+.span-4-sm {
+	width: 33.33333333% !important;
+}
+.span-3-sm {
+	width: 25% !important;
+}
+.span-2-sm {
+	width: 16.66666667% !important;
+}
+.span-1-sm {
+	width: 8.33333333% !important;
+}
 
-@media screen and (min-width: 768px) {
+/* 768px ~= 48em */
+@media screen and (min-width: 48em) {
 
 	.container {
 		width: 730px;
 	}
-	.row .span12 {
+	.span-12 {
 		width: 100% !important; 
 	}
-	.row .span11 {
+	.span-11 {
 		width: 91.66666667% !important;
 	}
-	.row .span10 {
+	.span-10 {
 		width: 83.33333333% !important;
 	}
-	.row .span9 {
+	.span-9 {
 		width: 75% !important;
 	}
-	.row .span8 {
+	.span-8 {
 		width: 66.66666667% !important;
 	}
-	.row .span7 {
+	.span-7 {
 		width: 58.33333333% !important;
 	}
-	.row .span6 {
+	.span-6 {
 		width: 50% !important;
 	}
-	.row .span5 {
+	.span-5 {
 		width: 41.66666667% !important;
 	}
-	.row .span4 {
+	.span-4 {
 		width: 33.33333333% !important;
 	}
-	.row .span3 {
+	.span-3 {
 		width: 25% !important;
 	}
-	.row .span2 {
+	.span-2 {
 		width: 16.66666667% !important;
 	}
-	.row .span1 {
+	.span-1 {
 		width: 8.33333333% !important;
 	}
-	/** Could also call .shift .shift **/
-	.row .shift12 {
+	/** Could also call .shift- .shift- **/
+	.shift-12 {
 		margin-left: 100% !important;
 	}
-	.row .shift11 {
+	.shift-11 {
 		margin-left: 91.66666666666667% !important;
 	}
-	.row .shift10 {
+	.shift-10 {
 		margin-left: 83.33333333333333% !important;
 	}
-	.row .shift9 {
+	.shift-9 {
 		margin-left: 75% !important;
 	}
-	.row .shift8 {
+	.shift-8 {
 		margin-left: 66.6666666666667% !important;
 	}
-	.row .shift7 {
+	.shift-7 {
 		margin-left: 58.33333333333333% !important;
 	}
-	.row .shift6 {
+	.shift-6 {
 		margin-left: 50% !important;
 	}
-	.row .shift5 {
+	.shift-5 {
 		margin-left: 41.6666666666667% !important;
 	}
-	.row .shift4 {
+	.shift-4 {
 		margin-left: 33.333333333333% !important;
 	}
-	.row .shift3 {
+	.shift-3 {
 		margin-left: 25% !important;
 	}
-	.row .shift2 {
+	.shift-2 {
 		margin-left: 16.6666666666666666% !important;
 	}
-	.row .shift1 {
-		margin-left:  8.3333333333333% !important;
+	.shift-1 {
+		margin-left: 8.3333333333333% !important;
+	}
+	.span-12-md {
+		width: 100% !important; 
+	}
+	.span-11-md {
+		width: 91.66666667% !important;
+	}
+	.span-10-md {
+		width: 83.33333333% !important;
+	}
+	.span-9-md {
+		width: 75% !important;
+	}
+	.span-8-md {
+		width: 66.66666667% !important;
+	}
+	.span-7-md {
+		width: 58.33333333% !important;
+	}
+	.span-6-md {
+		width: 50% !important;
+	}
+	.span-5-md {
+		width: 41.66666667% !important;
+	}
+	.span-4-md {
+		width: 33.33333333% !important;
+	}
+	.span-3-md {
+		width: 25% !important;
+	}
+	.span-2-md {
+		width: 16.66666667% !important;
+	}
+	.span-1-md {
+		width: 8.33333333% !important;
 	}
 }
-@media screen and (min-width: 980px) {
+/* 1024px ~= 64em */
+@media screen and (min-width: 64em) {
 	.container {
 		width: 960px;
+	}
+	.span-12-lg {
+		width: 100% !important; 
+	}
+	.span-11-lg {
+		width: 91.66666667% !important;
+	}
+	.span-10-lg {
+		width: 83.33333333% !important;
+	}
+	.span-9-lg {
+		width: 75% !important;
+	}
+	.span-8-lg {
+		width: 66.66666667% !important;
+	}
+	.span-7-lg {
+		width: 58.33333333% !important;
+	}
+	.span-6-lg {
+		width: 50% !important;
+	}
+	.span-5-lg {
+		width: 41.66666667% !important;
+	}
+	.span-4-lg {
+		width: 33.33333333% !important;
+	}
+	.span-3-lg {
+		width: 25% !important;
+	}
+	.span-2-lg {
+		width: 16.66666667% !important;
+	}
+	.span-1-lg {
+		width: 8.33333333% !important;
+	}
+}
+/* 1280px ~= 80em */
+@media screen and (min-width: 80em) {
+	.container {
+		width: 1260px;
+	}
+	.span-12-xl {
+		width: 100% !important; 
+	}
+	.span-11-xl {
+		width: 91.66666667% !important;
+	}
+	.span-10-xl {
+		width: 83.33333333% !important;
+	}
+	.span-9-xl {
+		width: 75% !important;
+	}
+	.span-8-xl {
+		width: 66.66666667% !important;
+	}
+	.span-7-xl {
+		width: 58.33333333% !important;
+	}
+	.span-6-xl {
+		width: 50% !important;
+	}
+	.span-5-xl {
+		width: 41.66666667% !important;
+	}
+	.span-4-xl {
+		width: 33.33333333% !important;
+	}
+	.span-3-xl {
+		width: 25% !important;
+	}
+	.span-2-xl {
+		width: 16.66666667% !important;
+	}
+	.span-1-xl {
+		width: 8.33333333% !important;
 	}
 }
